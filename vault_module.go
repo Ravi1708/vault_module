@@ -4,7 +4,7 @@ import (
 	vault "github.com/hashicorp/vault/api"
 )
 
-func Login(addr string, token string) (*vault.Client, error){
+func Login(addr string , token string) (*vault.Client, error){
 	config := vault.DefaultConfig()
 
 	config.Address = addr

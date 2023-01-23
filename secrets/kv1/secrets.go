@@ -23,11 +23,7 @@ func Create(client *vault.Client, mountPath string, key string , value string ) 
 		key: value,
 	}
 	err := client.KVv1(mountPath).Put(context.Background(), key, secretData)
-	if err != nil {
-		log.Fatalf("%v", err)
-	}
-	fmt.Printf("written successfully")
-	return  nil
+	return  err
 }
 
 func Update(client *vault.Client, key string , value string ) error {
