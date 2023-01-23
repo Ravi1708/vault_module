@@ -14,7 +14,6 @@ func Get(client *vault.Client, mountPath string, key string ) ( *vault.KVSecret,
 	if err != nil {
 		log.Fatalf("unable to write secret: %v", err)
 	}
-
 	return secret, err
 }
 

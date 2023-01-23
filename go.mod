@@ -1,4 +1,4 @@
-module vault_client
+module git.assistanz.com/kishore/vault_module
 
 go 1.19
 
