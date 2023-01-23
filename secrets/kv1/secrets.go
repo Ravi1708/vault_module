@@ -2,8 +2,6 @@ package kv1
 
 import (
 	"context"
-	"fmt"
-	"log"
 
 	vault "github.com/hashicorp/vault/api"
 )
@@ -11,10 +9,6 @@ import (
 func Get(client *vault.Client, mountPath string, key string ) ( *vault.KVSecret, error) {
 
 	secret, err := client.KVv1(mountPath).Get(context.Background(), key)
-	if err != nil {
-		log.Fatalf("unable to write secret: %v", err)
-	}
-
 	return secret, err
 }
 
@@ -26,16 +20,17 @@ func Create(client *vault.Client, mountPath string, key string , value string ) 
 	return  err
 }
 
-func Update(client *vault.Client, key string , value string ) error {
+func Update(client *vault.Client,mountPath string, key string , value string ) error {
 	secretData := map[string]interface{}{
 		key: value,
 	}
-	err := client.KVv1("secret/rundeck/keys").Put(context.Background(), key, secretData)
-	if err != nil {
-		log.Fatalf("unable to write secret: %v", err)
-	}
-	fmt.Printf("written successfully")
-	return nil
+	err := client.KVv1(mountPath).Put(context.Background(), key, secretData)
+	return  err
+}
+
+func Delete(client *vault.Client, mountPath string, key string ) error {
+	err := client.KVv1(mountPath).Delete(context.Background(), key)
+	return  err
 }
 
 
