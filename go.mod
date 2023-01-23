@@ -1,4 +1,4 @@
-module git.assistanz.com/kishore/vault_module
+module github.com/Ravi1708/vault_module
 
 go 1.19
 
